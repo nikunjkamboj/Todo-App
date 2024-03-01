@@ -43,7 +43,7 @@ const TodoList: React.FC = () => {
         setTasks([...tasks, newTask]);
         setText('');
         setDueDate('');
-    }
+    }hfh
 
     function deleteTask(id: number) {
         setTasks(tasks.filter(item => item.id !== id));

@@ -2,7 +2,7 @@ import React from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import { CiEdit } from "react-icons/ci";
 
-interface TodoItemProps {
+interface TodoItemProps {jghj
     item: {
         id: number;
         text: string;
