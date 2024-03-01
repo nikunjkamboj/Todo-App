@@ -1,0 +1,30 @@
+.mainLayout {
+    text-align: center;
+}
+
+.inputAdd {
+    width: 30%;
+    height: 40px;
+    border-Radius: 10px;
+}
+
+.inputDate {
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.buttonSubmit {
+    border-Radius: 5px;
+    height: 45px;
+    margin: 20px;
+    width: 70px;
+
+}
+
+.UpdateButton
+{
+    border-Radius: 5px;
+    height: 45px;
+    width: 150px;
+}
