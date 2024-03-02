@@ -3,6 +3,7 @@ import './TodoList.css';
 import TodoItem from './TodoItem.tsx';
 import EditTodo from './EditTodo.tsx';
 
+
 interface Task {
     id: number;
     text: string;
@@ -13,6 +14,9 @@ interface Task {
 
 
 const TodoList: React.FC = () => {
+
+
+
     const [tasks, setTasks] = useState<Task[]>([
         {
             id: 1,
@@ -32,14 +36,20 @@ const TodoList: React.FC = () => {
     const [dueDate, setDueDate] = useState<string>('');
 
 
-    function addTask(text: string, date: string) {
+
+    function addTask(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        if (!text.trim() || !dueDate) {
+            alert('Please enter both the Todo and Todo Date');
+            return;
+        }
         const newTask: Task = {
             id: Date.now(),
             text,
             completed: false,
-            date,
+            date: dueDate,
         };
-
         setTasks([...tasks, newTask]);
         setText('');
         setDueDate('');
@@ -53,7 +63,7 @@ const TodoList: React.FC = () => {
         setTasks(tasks.map(item => (item.id === id ? { ...item, completed: !item.completed } : item)));
     }
 
-    
+
     function updateTask(id: number, newText: string, newDate: string) {
         setTasks(tasks.map(item => (item.id === id ? { ...item, text: newText, date: newDate, isEditing: !item.isEditing } : item)));
     }
@@ -63,27 +73,27 @@ const TodoList: React.FC = () => {
     return (
         <>
             <div className="todo-list">
-                <form className="mainLayout">
+                <form name="inputForm" className="mainLayout" onSubmit={addTask}>
                     <input
                         className="inputAdd"
                         type="text"
                         placeholder="Add an Item"
-                        required
+                        name='TodoInput'
                         value={text}
                         onChange={(e) => setText(e.target.value)}
+
                     />
 
                     <input
                         className="inputDate"
                         type="date"
-                        required
+                        name='todoDate'
                         onChange={(e) => setDueDate(e.target.value)}
                     />
 
                     <button
                         className="buttonSubmit btn btn-primary"
-                        onClick={() => addTask(text, dueDate)}
-                        type="button">
+                        type="submit">
                         Add
                     </button>
                 </form>
