@@ -1,25 +1,12 @@
 import React from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import { CiEdit } from "react-icons/ci";
-
-interface TodoItemProps {
-    item: {
-        id: number;
-        text: string;
-        date: string;
-        completed: boolean;
-        isEditing?: boolean;
-    };
-    deleteTask: (id: number) => void;
-    toggleCompleted: (id: number) => void;
-    updateTask: (id: number, newText: string, newDate: string) => void;
-}
+import {TodoItemProps} from './ComponentsTypes.ts'
 
 const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, updateTask }) => {
     function handleChange() {
         toggleCompleted(item.id);
     }
-
     return (
         <>
             <div className='row justify-content-evenly '>
@@ -43,15 +30,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, 
                         size={30}
                         color='blue'
                         style={{ cursor: 'pointer', marginRight: '20px' }}
-                        onClick={() => updateTask(item.id, item.text, item.date)}
-                    />
-
+                        onClick={() => updateTask(item.id, item.text, item.date)}/>
                     <MdDeleteOutline
                         size={30}
                         color='#ff0066'
                         onClick={() => deleteTask(item.id)}
-                        style={{ cursor: 'pointer' }}
-                    />
+                        style={{ cursor: 'pointer' }}/>
                 </div>
             </div>
         </>

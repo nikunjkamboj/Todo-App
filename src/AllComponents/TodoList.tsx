@@ -1,122 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TodoList.css';
 import TodoItem from './TodoItem.tsx';
 import EditTodo from './EditTodo.tsx';
-
-
-interface Task {
-    id: number;
-    text: string;
-    date: string;
-    completed: boolean;
-    isEditing?: boolean;
-}
-
+import { useTodoContext } from '../TodoContextProvider.tsx';
 
 const TodoList: React.FC = () => {
+    const { tasks, addTask, deleteTask, toggleCompleted, updateTask } = useTodoContext();
+    const [text, setText] = React.useState<string>('');
+    const [dueDate, setDueDate] = React.useState<string>('');
 
-
-
-    const [tasks, setTasks] = useState<Task[]>([
-        {
-            id: 1,
-            text: 'hello world',
-            date: '2024-02-28',
-            completed: true,
-        },
-        {
-            id: 2,
-            text: 'india',
-            date: '2024-02-23',
-            completed: false,
-        },
-    ]);
-
-    const [text, setText] = useState<string>('');
-    const [dueDate, setDueDate] = useState<string>('');
-
-
-
-    function addTask(e: React.FormEvent<HTMLFormElement>) {
+    function addTaskHandler(e: React.FormEvent<HTMLFormElement>) 
+    {
         e.preventDefault();
-
         if (!text.trim() || !dueDate) {
             alert('Please enter both the Todo and Todo Date');
             return;
         }
-        const newTask: Task = {
-            id: Date.now(),
-            text,
-            completed: false,
-            date: dueDate,
-        };
-        setTasks([...tasks, newTask]);
+        addTask(text, dueDate);
         setText('');
         setDueDate('');
     }
 
-    function deleteTask(id: number) {
-        setTasks(tasks.filter(item => item.id !== id));
-    }
-
-    function toggleCompleted(id: number) {
-        setTasks(tasks.map(item => (item.id === id ? { ...item, completed: !item.completed } : item)));
-    }
-
-
-    function updateTask(id: number, newText: string, newDate: string) {
-        setTasks(tasks.map(item => (item.id === id ? { ...item, text: newText, date: newDate, isEditing: !item.isEditing } : item)));
-    }
-
-
-
     return (
         <>
             <div className="todo-list">
-                <form name="inputForm" className="mainLayout" onSubmit={addTask}>
+                <form name="inputForm" className="mainLayout" onSubmit={addTaskHandler}>
                     <input
                         className="inputAdd"
                         type="text"
                         placeholder="Add an Item"
-                        name='TodoInput'
+                        name="TodoInput"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-
                     />
 
                     <input
                         className="inputDate"
                         type="date"
-                        name='todoDate'
+                        name="todoDate"
+                        value={dueDate}  // Use the controlled component pattern
                         onChange={(e) => setDueDate(e.target.value)}
                     />
 
-                    <button
-                        className="buttonSubmit btn btn-primary"
-                        type="submit">
+                    <button className="buttonSubmit btn btn-primary" type="submit">
                         Add
                     </button>
                 </form>
 
-                {tasks.map(item => (
-                    item.isEditing ?
-                        (
-                            <EditTodo
-                                key={item.id}
-                                item={item}
-                                updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)}
-                            />
-                        ) : (
-                            <TodoItem
-                                key={item.id}
-                                item={item}
-                                deleteTask={deleteTask}
-                                toggleCompleted={toggleCompleted}
-                                updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
-
-                            />
-                        )
-                ))}
+                {tasks.map((item) =>
+                    item.isEditing ? (
+                        <EditTodo key={item.id} item={item} updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)} />
+                    ) : (
+                        <TodoItem
+                            key={item.id}
+                            item={item}
+                            deleteTask={() => deleteTask(item.id)}  // Ensure deleteTask is called correctly
+                            toggleCompleted={() => toggleCompleted(item.id)}  // Ensure toggleCompleted is called correctly
+                            updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
+                        />
+                    )
+                )}
             </div>
         </>
     );
