@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './TodoList.css';
 import TodoItem from './TodoItem.tsx';
@@ -9,8 +10,7 @@ const TodoList: React.FC = () => {
     const [text, setText] = React.useState<string>('');
     const [dueDate, setDueDate] = React.useState<string>('');
 
-    function addTaskHandler(e: React.FormEvent<HTMLFormElement>) 
-    {
+    function addTaskHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         if (!text.trim() || !dueDate) {
             alert('Please enter both the Todo and Todo Date');
@@ -47,19 +47,22 @@ const TodoList: React.FC = () => {
                     </button>
                 </form>
 
-                {tasks.map((item) =>
-                    item.isEditing ? (
-                        <EditTodo key={item.id} item={item} updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)} />
-                    ) : (
-                        <TodoItem
-                            key={item.id}
-                            item={item}
-                            deleteTask={() => deleteTask(item.id)}  // Ensure deleteTask is called correctly
-                            toggleCompleted={() => toggleCompleted(item.id)}  // Ensure toggleCompleted is called correctly
-                            updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
-                        />
-                    )
-                )}
+               
+
+                    {tasks.map((item) =>
+                        item.isEditing ? (
+                            <EditTodo key={item.id} item={item} updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)} />
+                        ) : (
+                            <TodoItem
+                                key={item.id}
+                                item={item}
+                                deleteTask={() => deleteTask(item.id)}  // Ensure deleteTask is called correctly
+                                toggleCompleted={() => toggleCompleted(item.id)}  // Ensure toggleCompleted is called correctly
+                                updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
+                            />
+                        )
+                    )}
+                   
             </div>
         </>
     );
