@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import { CiEdit } from "react-icons/ci";
-import {TodoItemProps} from './ComponentsTypes.ts'
+import { TodoItemProps } from './ComponentsTypes.ts'
 
 const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, updateTask }) => {
     function handleChange() {
@@ -38,6 +38,36 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, 
                         style={{ cursor: 'pointer' }}/>
                 </div>
             </div>
+            {/* <tr>
+                <td>
+                    <input
+                        type='checkbox'
+                        className='col-3 my-2 form-check-input'
+                        checked={item.completed}
+                        onChange={handleChange}
+                    />
+                </td>
+                <td className={`col-3 my-2 ${item.completed ? 'completed-task' : ''}`}>
+                    {item.completed ? <del>{item.text}</del> : item.text}
+
+                </td>
+                <td className={`col-3 my-2 ${item.completed ? 'completed-task' : ''}`}>
+                    {item.completed ? <del>{item.date}</del> : item.date}
+
+                </td>
+                <td>
+                    <CiEdit
+                        size={30}
+                        color='blue'
+                        style={{ cursor: 'pointer', marginRight: '20px' }}
+                        onClick={() => updateTask(item.id, item.text, item.date)} />
+                    <MdDeleteOutline
+                        size={30}
+                        color='#ff0066'
+                        onClick={() => deleteTask(item.id)}
+                        style={{ cursor: 'pointer' }} />
+                </td>
+            </tr> */}
         </>
     );
 };
