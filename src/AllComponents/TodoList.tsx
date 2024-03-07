@@ -23,6 +23,7 @@ const TodoList: React.FC = () => {
 
     return (
         <>
+         
             <div className="todo-list">
                 <form name="inputForm" className="mainLayout" onSubmit={addTaskHandler}>
                     <input
@@ -46,24 +47,22 @@ const TodoList: React.FC = () => {
                         Add
                     </button>
                 </form>
-
-               
-
                     {tasks.map((item) =>
                         item.isEditing ? (
                             <EditTodo key={item.id} item={item} updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)} />
                         ) : (
-                            <TodoItem
-                                key={item.id}
-                                item={item}
-                                deleteTask={() => deleteTask(item.id)}  // Ensure deleteTask is called correctly
-                                toggleCompleted={() => toggleCompleted(item.id)}  // Ensure toggleCompleted is called correctly
-                                updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
-                            />
+                            // <TodoItem
+                            //     key={item.id}
+                            //     item={item}
+                            //     deleteTask={() => deleteTask(item.id)}  // Ensure deleteTask is called correctly
+                            //     toggleCompleted={() => toggleCompleted(item.id)}  // Ensure toggleCompleted is called correctly
+                            //     updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
+                            // />
+                            <></>
                         )
                     )}
-                   
             </div>
+           
         </>
     );
 };

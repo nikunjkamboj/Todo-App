@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import TodoList from './AllComponents/TodoList.tsx';
+import TodoItem from './AllComponents/TodoItem.tsx';
 import { useTodoContext } from './TodoContextProvider.tsx';
 import Home from './Home.tsx';
+import CardView from './AllComponents/CardView.tsx';
+import TodoList from './AllComponents/TodoList.tsx';
+import ReactPaginate from 'react-paginate';
+import './Main.css'
 
 const Main: React.FC = () => {
+    const { tasks, addTask, deleteTask, toggleCompleted, updateTask } = useTodoContext();
     const { user, isAuthenticated, loginWithPopup, logout } = useAuth0();
     const { theme, setTheme } = useTodoContext();
+    const [view, setView] = useState<string>('List'); // Default view is 'List'
+    const [PageNumber, setPageNumber] = useState(0)
+
+    const itemPerPage = 8
+    const pageVisited = PageNumber * itemPerPage;
+    const PageCount = Math.ceil(tasks.length / itemPerPage)
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+    }
 
     const themeToggle = () => {
         setTheme(!theme);
+    };
+
+    const switchView = () => {
+        setView(view === 'List' ? 'Card' : 'List');
     };
 
     const appStyles = {
         backgroundColor: theme ? '#343a40' : 'white',
         minHeight: '100vh',
         color: theme ? 'white' : 'black',
-      
         transition: 'background-color 0.3s ease',
     };
 
@@ -26,7 +43,7 @@ const Main: React.FC = () => {
                 <div className="container-fluid">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className=" nav-link"  href="#" onClick={themeToggle}>
+                            <a className="nav-link" href="#" onClick={themeToggle}>
                                 Theme
                             </a>
                         </li>
@@ -40,14 +57,11 @@ const Main: React.FC = () => {
                                 <li><a className="dropdown-item" href="#">Incompleted</a></li>
                             </ul>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Views
+
+                        <li className="nav-item">
+                            <a className="nav-link" href="#" onClick={switchView}>
+                                {view === 'Card' ? 'List View' : 'Card View'}
                             </a>
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#" >List</a></li>
-                                <li><a className="dropdown-item" href="#">Card</a></li>
-                            </ul>
                         </li>
                     </ul>
                     <form className="d-flex" role="search">
@@ -74,7 +88,52 @@ const Main: React.FC = () => {
     return (
         <div style={appStyles}>
             {renderNavbar()}
-            {!isAuthenticated ? <Home /> : <TodoList />}
+            {!isAuthenticated ? <Home /> : (
+                <div className='row mx-3'>
+                    <TodoList />
+                    {view === 'List' ? (
+                        tasks
+                            .slice(pageVisited, pageVisited + itemPerPage)
+                            .map((item) => (
+                                <TodoItem
+                                    key={item.id}
+                                    item={item}
+                                    deleteTask={() => deleteTask(item.id)}
+                                    toggleCompleted={() => toggleCompleted(item.id)}
+                                    updateTask={(id, newText, newDate) => updateTask(id, newText, newDate)}
+                                />
+                            ))
+                    ) : (
+
+                        tasks
+                            .slice(pageVisited, pageVisited + itemPerPage)
+                            .map((item) => (
+                                <CardView
+
+                                    key={item.id}
+                                    item={item}
+                                    deleteTask={deleteTask}
+                                    toggleCompleted={toggleCompleted}
+                                    updateTask={updateTask}
+                                />
+                            ))
+
+                    )}
+                    {tasks.length > itemPerPage + 1 && <div className='pagination'>
+                        <ReactPaginate previousLabel={'<'}
+                            nextLabel={'>'}
+                            pageCount={PageCount}
+                            onPageChange={changePage}
+                            containerClassName={'paginationContainer'}
+                            previousLinkClassName={'prevBtn'}
+                            nextLinkClassName={'nextBtn'}
+                            activeClassName={'activePagination'}
+                        />
+                    </div>}
+
+
+                </div>
+            )}
         </div>
     );
 };
