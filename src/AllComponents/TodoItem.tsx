@@ -9,7 +9,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, 
     }
     return (
         <>
-            <div className='row justify-content-evenly '>
+            <div className='row justify-content-evenly'>
                 <input
                     type='checkbox'
                     className='col-3 my-2 form-check-input'
@@ -30,12 +30,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, deleteTask, toggleCompleted, 
                         size={30}
                         color='blue'
                         style={{ cursor: 'pointer', marginRight: '20px' }}
-                        onClick={() => updateTask(item.id, item.text, item.date)}/>
+                        onClick={() => updateTask(item.id, item.text, item.date)} />
                     <MdDeleteOutline
                         size={30}
                         color='#ff0066'
                         onClick={() => deleteTask(item.id)}
-                        style={{ cursor: 'pointer' }}/>
+                        style={{ cursor: 'pointer' }} />
                 </div>
             </div>
             {/* <tr>

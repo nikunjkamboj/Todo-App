@@ -13,8 +13,6 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  
-
   const [tasks, setTasks] = useState<Task[]>(getLocalItems());
 
   const addTask = (text: string, date: string) => {
