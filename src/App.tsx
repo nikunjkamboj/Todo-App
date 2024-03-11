@@ -10,4 +10,8 @@ const App: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f

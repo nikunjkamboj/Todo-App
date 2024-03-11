@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@auth0/auth0-react": "^2.2.4",
+=======
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+<<<<<<< HEAD
+=======
+    "formik": "^2.4.5",
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",

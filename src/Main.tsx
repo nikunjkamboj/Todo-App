@@ -9,8 +9,11 @@ import ReactPaginate from 'react-paginate';
 import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 import './Main.css';
 
+<<<<<<< HEAD
 //done with the task
 
+=======
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
 const Main: React.FC = () => {
     const { tasks, deleteTask, toggleCompleted, updateTask } = useTodoContext();
     const { user, isAuthenticated, loginWithPopup, logout } = useAuth0();
@@ -20,7 +23,10 @@ const Main: React.FC = () => {
     const [filter, setFilter] = useState<string>('All');
     const [search, setSearch] = useState<string>("");
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     const itemPerPage: number = 8;
     const pageVisited: number = PageNumber * itemPerPage;
     const PageCount: number = Math.ceil(tasks.length / itemPerPage);

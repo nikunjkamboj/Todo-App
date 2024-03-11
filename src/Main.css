@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .paginationContainer{
+=======
+.paginationContainer {
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     display: flex;
     justify-content: center;
     gap: 3px;
@@ -7,18 +11,30 @@
     position: relative;
     left: 44%;
 }
+<<<<<<< HEAD
 .prevBtn, .nextBtn{
     text-decoration: none;
 }
 .paginationContainer li{
     list-style: none;
     padding: 10px;
+=======
+
+.prevBtn,
+.nextBtn {
+    text-decoration: none;
+}
+
+.paginationContainer li {
+    list-style: none;
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     border: 1px solid gray;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 300px;
     color: black;
 }
+<<<<<<< HEAD
 .paginationContainer li:hover{
     background-color: #ddd;
 }
@@ -29,5 +45,26 @@
 background-color: yellow;
 }
 .activePagination a{
+=======
+
+.paginationContainer li a {
+    padding: 10px;
+}
+
+.paginationContainer li:hover {
+    background-color: #ddd;
+}
+
+.paginationContainer li.activePagination {
+    background-color: #ffe6cc;
+    height: 30px;
+}
+
+.activePagination:hover {
+    background-color: yellow;
+}
+
+.activePagination a {
+>>>>>>> 9d1d42e3d03c2e9a7a1e08b5d016490fe751ba7f
     color: black;
 }
