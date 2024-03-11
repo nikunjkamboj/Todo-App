@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 
 import React from 'react';
-=======
-import React, { useState } from 'react';
->>>>>>> parent of fe361ff (context api and seperate ts files)
 import './TodoList.css';
 import TodoItem from './TodoItem.tsx';
 import EditTodo from './EditTodo.tsx';
@@ -20,33 +16,7 @@ interface Task {
 
 const TodoList: React.FC = () => {
 
-<<<<<<< HEAD
     function addTaskHandler(e: React.FormEvent<HTMLFormElement>) {
-=======
-
-
-    const [tasks, setTasks] = useState<Task[]>([
-        {
-            id: 1,
-            text: 'hello world',
-            date: '2024-02-28',
-            completed: true,
-        },
-        {
-            id: 2,
-            text: 'india',
-            date: '2024-02-23',
-            completed: false,
-        },
-    ]);
-
-    const [text, setText] = useState<string>('');
-    const [dueDate, setDueDate] = useState<string>('');
-
-
-
-    function addTask(e: React.FormEvent<HTMLFormElement>) {
->>>>>>> parent of fe361ff (context api and seperate ts files)
         e.preventDefault();
 
         if (!text.trim() || !dueDate) {
@@ -81,6 +51,7 @@ const TodoList: React.FC = () => {
 
     return (
         <>
+         
             <div className="todo-list">
                 <form name="inputForm" className="mainLayout" onSubmit={addTask}>
                     <input
@@ -113,16 +84,6 @@ const TodoList: React.FC = () => {
                     {tasks.map((item) =>
                         item.isEditing ? (
                             <EditTodo key={item.id} item={item} updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)} />
-=======
-                {tasks.map(item => (
-                    item.isEditing ?
-                        (
-                            <EditTodo
-                                key={item.id}
-                                item={item}
-                                updateTask={(newText, newDate) => updateTask(item.id, newText, newDate)}
-                            />
->>>>>>> parent of fe361ff (context api and seperate ts files)
                         ) : (
                             <TodoItem
                                 key={item.id}
@@ -145,6 +106,7 @@ const TodoList: React.FC = () => {
                 ))}
 >>>>>>> parent of fe361ff (context api and seperate ts files)
             </div>
+           
         </>
     );
 };

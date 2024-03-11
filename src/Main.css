@@ -1,0 +1,44 @@
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    padding: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    left: 44%;
+}
+
+.prevBtn,
+.nextBtn {
+    text-decoration: none;
+}
+
+.paginationContainer li {
+    list-style: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 300px;
+    color: black;
+}
+
+.paginationContainer li a {
+    padding: 10px;
+}
+
+.paginationContainer li:hover {
+    background-color: #ddd;
+}
+
+.paginationContainer li.activePagination {
+    background-color: #ffe6cc;
+    height: 30px;
+}
+
+.activePagination:hover {
+    background-color: yellow;
+}
+
+.activePagination a {
+    color: black;
+}

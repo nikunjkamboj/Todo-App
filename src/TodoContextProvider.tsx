@@ -25,6 +25,8 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
+  const [theme, setTheme] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('Lists', JSON.stringify(tasks));
   }, [tasks]);
@@ -50,7 +52,7 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({ children
   console.log('tasks in provider:', tasks);
 
   return (
-    <TodoContext.Provider value={{ tasks, addTask, deleteTask, toggleCompleted, updateTask }}>
+    <TodoContext.Provider value={{ tasks , theme, addTask, deleteTask, toggleCompleted, updateTask ,setTheme }}>
       {children}
     </TodoContext.Provider>
   );

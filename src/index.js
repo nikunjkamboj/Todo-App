@@ -6,7 +6,6 @@ import App from './App.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<<<<<<< HEAD
     <Auth0Provider
       domain="dev-8qmzuz5hp5xzxcyc.us.auth0.com"
       clientId="0rMNuGgEVXlPZCKtyTIbaJSH1TEEgSMx"
@@ -16,10 +15,5 @@ root.render(
     >
       <App />
     </Auth0Provider>
-=======
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
->>>>>>> parent of fe361ff (context api and seperate ts files)
 );
 
